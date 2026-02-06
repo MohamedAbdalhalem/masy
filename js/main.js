@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const field = contactForm.querySelector(`[name="${fieldName}"]`);
             const formGroup = field.closest('.form-group');
             const errorDiv = formGroup.querySelector('.form-error');
-            
+
             field.classList.add('error');
             errorDiv.textContent = message;
             errorDiv.style.display = 'flex';
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const field = contactForm.querySelector(`[name="${fieldName}"]`);
             const formGroup = field.closest('.form-group');
             const errorDiv = formGroup.querySelector('.form-error');
-            
+
             field.classList.remove('error');
             errorDiv.textContent = '';
             errorDiv.style.display = 'none';
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageInput = contactForm.querySelector('textarea[name="message"]');
 
         if (nameInput) {
-            nameInput.addEventListener('input', function() {
+            nameInput.addEventListener('input', function () {
                 if (this.value.trim().length > 0) {
                     clearError('name');
                 }
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (emailInput) {
-            emailInput.addEventListener('input', function() {
+            emailInput.addEventListener('input', function () {
                 if (this.value.trim().length > 0 && isValidEmail(this.value.trim())) {
                     clearError('email');
                 }
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (messageInput) {
-            messageInput.addEventListener('input', function() {
+            messageInput.addEventListener('input', function () {
                 if (this.value.trim().length > 0) {
                     clearError('message');
                 }
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
 
                 // Open Gmail compose window
-                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=mohamed3ab7alem@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=masym32@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.open(gmailUrl, '_blank');
 
                 // Reset button after a short delay
@@ -262,6 +262,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === modal) {
                 closeFunc();
             }
+        });
+    }
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const currentTheme = savedTheme || systemPreference;
+
+    // Set initial theme
+    htmlElement.setAttribute('data-theme', currentTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
         });
     }
 });

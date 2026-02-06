@@ -19,6 +19,49 @@
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+[data-theme="dark"] {
+    --color-bg: #12100e;
+    --color-primary: #af8260;
+    --color-surface: #1e1b18;
+    --color-text-main: #fdfaf7;
+    --color-text-muted: #c5b4a2;
+    --color-border: rgba(175, 130, 96, 0.15);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.1rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: rotate(15deg);
+}
+
+[data-theme="dark"] .fa-moon {
+    display: none;
+}
+
+[data-theme="light"] .fa-sun {
+    display: none;
+}
+
+html:not([data-theme="dark"]) .fa-sun {
+    display: none;
+}
+
 
 /* Reset & Base Styles */
 * {
@@ -1459,7 +1502,7 @@ button[type="submit"]:disabled {
 }
 
 .modal-content {
-    background: #fdfaf7;
+    background: var(--color-bg);
     /* Warm background */
     max-width: 600px;
     width: 100%;
@@ -1468,10 +1511,11 @@ button[type="submit"]:disabled {
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(118, 75, 36, 0.25);
     /* Warm shadow */
-    border: 1px solid rgba(175, 130, 96, 0.2);
+    border: 1px solid var(--color-border);
     transform: scale(0.95) translateY(10px);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
+    color: var(--color-text-main);
 }
 
 .modal.active .modal-content {
@@ -1525,8 +1569,8 @@ button[type="submit"]:disabled {
 
 .modal-body li {
     padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(175, 130, 96, 0.15);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
     display: flex;
     align-items: flex-start;
@@ -1540,7 +1584,7 @@ button[type="submit"]:disabled {
 .modal-body li:hover {
     transform: translateY(-2px);
     border-color: var(--color-primary);
-    background: #ffffff;
+    background: var(--color-bg);
     box-shadow: 0 4px 12px rgba(118, 75, 36, 0.1);
 }
 
